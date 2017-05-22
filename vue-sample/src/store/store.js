@@ -6,18 +6,58 @@ Vue.use(Vuex);
 // defining store
 const store = new Vuex.Store({
   state: {
-    posts: [{text: "Hello"},{text: "Hello"},{text: "Hello"}],
-    deletedPost: []
+    registered: [{
+      text: "Hello"
+    }, {
+      text: "Welcome"
+    }, {
+      text: "Hi!!"
+    }],
+    unregistered: []
   },
   getters: {
-    getPost(state) {
-      return state.posts;
+    getRegistered(state) {
+      return state.registered;
     },
-    getDeletedPost(state) {
-      return state.deletedPost;
+    getUnregistered(state) {
+      return state.unregistered;
     }
   },
-  mutuations: {}
+  mutations: {
+    register: function(state, payload) {
+      console.log(payload);
+      const obj = state.unregistered.find(function(item) {
+        console.log(item);
+        return item.text == payload.text;
+      });
+      if (obj) {
+        state.registered.push(obj);
+        state.unregistered.splice(state.unregistered.indexOf(obj), 1);
+      }
+    },
+    unregister: function(state, payload) {
+      const obj = state.registered.find(item => {
+        return item.text == payload.text;
+      });
+      if (obj) {
+        state.unregistered.push(obj);
+        state.registered.splice(state.registered.indexOf(obj), 1);
+      }
+    }
+  },
+  actions: {
+    register: function(context, text) {
+      console.log('actions', context, text);
+      context.commit('register', {
+        text
+      });
+    },
+    unregister: function(context, text) {
+      context.commit('unregister', {
+        text
+      });
+    }
+  }
 });
 console.log('inside store', store);
 

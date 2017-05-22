@@ -23,7 +23,7 @@ Vue.component('app-unregistered', Unregistred);
 console.log('here', store);
 
 const routes = [{
-    path: '/',
+    path: '/login',
     name: 'login',
     component: Login  },
   {
@@ -37,7 +37,7 @@ const routes = [{
     component: Profile
   },
   {
-    path: '/sample',
+    path: '/',
     name: 'sample',
     component: Sample
   }
