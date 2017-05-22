@@ -8,12 +8,17 @@ import store from './store/store.js';
 import Feeds from './pages/Feeds.vue';
 import Login from './pages/Login.vue';
 import Profile from './pages/Profile.vue';
-import News from './components/News.vue'
+import News from './components/News.vue';
+import Registred from './components/sample/registered.vue';
+import Unregistred from './components/sample/unregistered.vue';
+import Sample from './pages/Sample.vue';
 
 Vue.use(VueRouter);
 Vue.component('app-nav', Navbar);
 Vue.component('app-message', Message);
-Vue.component('app-news', News)
+Vue.component('app-news', News);
+Vue.component('app-registered', Registred);
+Vue.component('app-unregistered', Unregistred);
 
 console.log('here', store);
 
@@ -30,6 +35,11 @@ const routes = [{
     path: '/profile',
     name: 'profile',
     component: Profile
+  },
+  {
+    path: '/sample',
+    name: 'sample',
+    component: Sample
   }
 ]
 const router = new VueRouter({
